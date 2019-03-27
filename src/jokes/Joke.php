@@ -1,8 +1,7 @@
-<?php 
+<?php
 
 namespace KofiCypher\ChuckNorrisJokes;
 
-
-class Joke {
-    
+class Joke
+{
 }
