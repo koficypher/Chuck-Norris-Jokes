@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * Kofi Cypher <skcypher6@gmail.com>
+ *
+ * Chuck Norris Jokes
+ *
+ * Copyright 2019
+ */
+
 namespace KofiCypher\ChuckNorrisJokes;
 
 class JokeFactory
@@ -25,6 +33,5 @@ class JokeFactory
 
     public function getDefinedJoke()
     {
-        
     }
 }
