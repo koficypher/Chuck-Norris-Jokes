@@ -22,4 +22,9 @@ class JokeFactory
     {
         return $this->jokes[array_rand($this->jokes)];
     }
+
+    public function getDefinedJoke()
+    {
+        
+    }
 }
