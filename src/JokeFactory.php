@@ -31,5 +31,4 @@ class JokeFactory
 
         return $joke->value->joke;
     }
-
 }
