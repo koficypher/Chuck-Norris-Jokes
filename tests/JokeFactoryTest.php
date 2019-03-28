@@ -10,7 +10,11 @@
 
 namespace KofiCypher\ChuckNorrisJokes\Tests;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Handler\MockHandler;
 use KofiCypher\ChuckNorrisJokes\JokeFactory;
 
 class JokeFactoryTest extends TestCase
@@ -18,28 +22,17 @@ class JokeFactoryTest extends TestCase
     /**@test */
     public function test_it_returns_a_random_joke()
     {
-        $jokes = new JokeFactory([
-            'This is a joke',
+        $mock = new MockHandler([
+            new Response(200, [], '{ "type": "success", "value": { "id": 268, "joke": "Time waits for no man. Unless that man is John Doe." } }')  
         ]);
+        
+        $handler = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handler]);
+
+        $jokes = new JokeFactory($client);
+            
         $joke = $jokes->getRandomJoke();
 
-        $this->assertSame('This is a joke', $joke);
-    }
-
-    /**@test */
-    public function test_it_returns_a_predefined_joke()
-    {
-        $chuck = [
-              'Chuck Norris does not wear a condom. Because there is no such thing as protection from Chuck Norris.',
-              'Chuck Norris counted to infinity... Twice',
-              'The First rule of Chuck Norris is: you do not talk about Chuck Norris',
-              'If you can see Chuck Norris, he can see you. If you can\'t see Chuck Norris you may be only seconds away from death',
-          ];
-
-        $jokes = new JokeFactory();
-
-        $joke = $jokes->getRandomJoke();
-
-        $this->assertContains($joke, $chuck);
+        $this->assertSame('Time waits for no man. Unless that man is John Doe.', $joke);
     }
 }
