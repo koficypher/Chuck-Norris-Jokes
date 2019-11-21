@@ -11,11 +11,11 @@
 namespace KofiCypher\ChuckNorrisJokes\Tests;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
-use GuzzleHttp\Handler\MockHandler;
 use KofiCypher\ChuckNorrisJokes\JokeFactory;
+use PHPUnit\Framework\TestCase;
 
 class JokeFactoryTest extends TestCase
 {
